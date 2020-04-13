@@ -1,0 +1,55 @@
+.card-body{
+    margin: 24px; 
+    overflow: hidden;
+}
+
+.mat-grid-tile{
+    color: black;
+}
+
+.spieler-container{
+    padding: 8px; 
+    margin: 8px;
+}
+
+.admin-container{
+    padding: 8px; 
+    margin: 8px;
+}
+
+
+.kugel-container{
+    padding: 8px; 
+    margin: 8px;
+    opacity: 90%;
+}
+
+.kugel-header{
+    padding:24px;
+    margin: 8px;
+    height: 48px;
+}
+
+.spieler-header{
+    padding:24px;
+    margin: 8px;
+    height: 48px;
+}
+
+.admin-buttons{
+    float: right;
+}
+
+.spiel-details{
+    float: left;
+}
+
+.kugel-footer{
+    margin-top: 8px;
+    text-align: center;
+    align-items: center;
+}
+
+.currentSpielerName{
+    color: green;
+}

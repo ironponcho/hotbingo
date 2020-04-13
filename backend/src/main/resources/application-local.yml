@@ -1,0 +1,7 @@
+spring:
+  main.allow-bean-definition-overriding: true
+
+amazon:
+  dynamodb:
+    endpoint: http://localhost:8000
+    region: eu-central-1

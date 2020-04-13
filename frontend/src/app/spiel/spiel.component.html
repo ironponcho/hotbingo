@@ -1,0 +1,93 @@
+<div class="kugel-container" *ngIf="moeglicheNummern.length > 0 && spiel">
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="kugel-header">
+          <span matBadge="{{ spiel.gezogeneNummern.length }}" matBadgeOverlap="false">
+            Kugeln
+          </span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-card-content class="card-body">
+        <mat-chip-list>
+          <mat-chip [ngStyle]="{'background-color': determineCellColor(nummer)}" *ngFor="let nummer of moeglicheNummern"
+            (click)="addGezogeneNummer(nummer)">
+            {{nummer}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-card-content>
+
+      <mat-divider [inset]="true"></mat-divider>
+      <div class="kugel-footer">
+        <span class='spiel-details'>
+          <button aria-label="Settings" mat-button disabled>
+            <mat-icon>settings</mat-icon>
+          </button>
+          <span>Spield-ID: {{ spiel.id }} </span>
+        </span>
+
+        <span class='admin-buttons'>
+          <a href="{{ getEinladungsLink() }}" target="_blank">Einladungslink</a>
+          <button aria-label="Add Random-Player" mat-button (click)="addRandomPlayer()">
+            <mat-icon>plus_one</mat-icon>
+          </button>
+          <button mat-button (click)="postRandomNummer()">
+            <mat-icon aria-label="Generate Random Number">autorenew icon </mat-icon>
+          </button>
+        </span>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>
+
+<div *ngIf="currentSpieler" class="spieler-container">
+  <mat-divider [inset]="true"></mat-divider>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="spieler-header">
+          <span matBadge="{{ getTreffer(currentSpieler).length }}" matBadgeOverlap="false" class="currentSpielerName">
+            <b>{{ currentSpieler.name }}</b>
+          </span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="{{ spiel.settings.spielfeldElementsPerDimension }}" rowHeight="1:1">
+        <div *ngFor="let row of currentSpieler.spielfeld">
+          <div *ngFor="let col of row">
+            <mat-grid-tile [ngStyle]="{'background-color': determineCellColor(col)}">
+              {{ col }}
+            </mat-grid-tile>
+          </div>
+        </div>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<div *ngIf="otherSpieler" class="spieler-container">
+  <mat-divider [inset]="true"></mat-divider>
+  <mat-accordion multi="true">
+    <mat-expansion-panel *ngFor="let s of otherSpieler; trackBy: trackBySpielerId">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="spieler-header">
+          <span matBadge="{{ getTreffer(s).length }}" matBadgeOverlap="false">
+            {{ s.name }}
+          </span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="{{ spiel.settings.spielfeldElementsPerDimension }}" rowHeight="1:1">
+        <div *ngFor="let row of s.spielfeld">
+          <div *ngFor="let col of row">
+            <mat-grid-tile [ngStyle]="{'background-color': determineCellColor(col)}">
+              {{ col }}
+            </mat-grid-tile>
+          </div>
+        </div>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div>
+  </div>
+</div>

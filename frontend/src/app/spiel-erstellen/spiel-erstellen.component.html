@@ -1,0 +1,51 @@
+<div class="menu-container">
+
+    <h1 class="center">Ein neues Spiel erstellen</h1>
+    <form [formGroup]="spielSettingsForm">
+    <div>
+        <mat-card class="menuItem">
+            <mat-form-field appearance="fill">
+                <mat-label>Maximale Nummer</mat-label>
+                <input matInput formControlName="maxNummer" placeholder= defaultSpielSettings>
+                <mat-hint>bestimmt die größte mögliche Nummer des Spiels</mat-hint>
+            </mat-form-field>
+        </mat-card>
+    </div>
+
+    <div>
+        <mat-card class="menuItem">
+            <mat-form-field appearance="fill">
+                <mat-label>Minimale Nummer</mat-label>
+                <input matInput formControlName="minNummer">
+                <mat-hint>bestimmt die kleine mögliche Nummer des Spiels</mat-hint>
+            </mat-form-field>
+        </mat-card>
+    </div>
+
+    <div>
+        <mat-card class="menuItem">
+            <mat-form-field appearance="fill">
+                <mat-label>Eintrittswahrscheinlichkeit für Aktionen</mat-label>
+                <input matInput formControlName="wahrscheinlichkeitAktionInProzent">
+                <mat-hint>in Prozent zwischen 0 (nie) und 100 (immer)</mat-hint>
+            </mat-form-field>
+        </mat-card>
+    </div>
+
+    
+    <div>
+        <mat-card class="menuItem">
+            <mat-form-field appearance="fill">
+                <mat-label>Felder je Dimension</mat-label>
+                <input matInput formControlName="spielfeldElementsPerDimension">
+                <mat-hint>Bestimmt wie viele Felder pro Dimension zur Verfügung stehen</mat-hint>
+            </mat-form-field>
+        </mat-card>
+    </div>
+    </form>
+    <div>
+        <mat-card class="menuItem">
+            <button mat-button (click)="submitForm()">Abschließen</button>
+        </mat-card>
+    </div>
+</div>

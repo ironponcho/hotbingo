@@ -1,0 +1,28 @@
+.navbar{
+    text-shadow: indigo;
+    background-color: rgb(255, 255, 255);
+    height: 5%; 
+}
+
+.general-background{
+    min-height: 100%;
+    background-color: rgb(173, 88, 88);
+    margin: 0; padding: 0;
+
+}
+
+.main-div{
+    height: 100%;
+    padding-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer{
+    position: fixed;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+}

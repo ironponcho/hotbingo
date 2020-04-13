@@ -1,0 +1,9 @@
+spring:
+  main.allow-bean-definition-overriding: true
+
+amazon:
+  aws:
+    accesskey: YOUR_ACCESS_KEY
+    secretkey: YOUR_SECRET_KEY
+  dynamodb:
+    endpoint: YOUR-DYNAMO-ENDPONT/bingo-spiel

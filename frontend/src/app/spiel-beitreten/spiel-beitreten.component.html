@@ -1,0 +1,67 @@
+<div class="menu-container">
+
+  <mat-vertical-stepper [linear]="false" #stepper>
+    <form [formGroup]="spielIdFormGroup">
+
+      <mat-step [stepControl]="spielIdFormGroup">
+        <ng-template matStepLabel>Spiel-Id eingeben </ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Spiel-ID</mat-label>
+          <input class="form-input" (input)="checkIfSpielWithIdExists()" matInput formControlName="spielId" required>
+          <mat-hint>Diese ID erfährst du vom Spielleiter</mat-hint>
+        </mat-form-field>
+        <div *ngIf="spiel" class="button-container">
+          <button mdbBtn color="primary" mdbWavesEffect mat-raised-button matStepperNext>Weiter</button>
+        </div>
+      </mat-step>
+
+      <mat-step *ngIf="spiel">
+        <ng-template matStepLabel>Gib deinen Namen an!</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input class="form-input" matInput formControlName="spielerName">
+        </mat-form-field>
+
+        <div class="button-container">
+          <button mdbBtn color="primary" mdbWavesEffect mat-raised-button (click)="enterName()"
+            matStepperNext>Weiter</button>
+        </div>
+
+      </mat-step>
+
+      <mat-step *ngIf="spielerName">
+        <ng-template matStepLabel>Spielfeld erstellen</ng-template>
+
+        <div class="button-container">
+          <button mdbBtn color="primary" (click)="generateSpielfeld()" mdbWavesEffect mat-raised-button>
+            <span>
+              Neues Spielfeld erstellen
+            </span>
+          </button>
+        </div>
+
+        <div *ngIf="spielfeld">
+          <mat-grid-list cols="{{ spiel.settings.spielfeldElementsPerDimension }}" rowHeight="1:1">
+            <div *ngFor="let row of spielfeld">
+              <div *ngFor="let col of row">
+                <mat-grid-tile [ngStyle]="{'background-color': determineCellColor()}">
+                  {{ col }}
+                </mat-grid-tile>
+              </div>
+            </div>
+          </mat-grid-list>
+
+          <div class="button-container">
+            <button mdbBtn color="primary" (click)="joinSpiel()" mdbWavesEffect mat-raised-button>
+              <span>
+                Dieses Spielfeld verwenden
+              </span>
+            </button>
+          </div>
+        </div>
+
+      </mat-step>
+
+    </form>
+  </mat-vertical-stepper>
+</div>
